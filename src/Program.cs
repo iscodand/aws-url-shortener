@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// isco => add aws lambda hosting for minimal apis
+builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
+
 string connectionString = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionString));
